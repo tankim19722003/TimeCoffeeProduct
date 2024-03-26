@@ -44,4 +44,6 @@ public class Product {
     @JsonManagedReference
 //    @JsonIgnore
     List<OrderDetail> orderDetails = new ArrayList<>();
+
+
 }

@@ -115,15 +115,7 @@ public class OrderDetailService implements IOrderDetailService{
         listOrderDetailResponse.setItemOrderDetailList(itemOrderDetailResponses);
 
         // set orderResponse to attribute orderDetailResponse
-        TableResponse tableResponse = Tables.toTableResponse(order.getTable());
-        OrderResponse orderResponse = OrderResponse.builder()
-                .createAt(order.getOrderDate())
-                .totalMoney(order.getTotalMoney())
-                .id(order.getId())
-                .tableResponse(tableResponse)
-                .build();
-
-
+        OrderResponse orderResponse = Order.toOrderResponse(order);
         listOrderDetailResponse.setOrderResponse(orderResponse);
         return listOrderDetailResponse;
     }

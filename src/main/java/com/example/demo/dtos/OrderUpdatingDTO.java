@@ -9,9 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductOrder {
-    @JsonProperty("product_id")
-    private int productId;
-
-    private int quantity;
+public class OrderUpdatingDTO {
+    @JsonProperty("table_id")
+    private int tableId;
 }

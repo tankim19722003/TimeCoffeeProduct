@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import com.example.demo.responses.CategoryResponse;
+import com.example.demo.responses.OrderDetailInOrderResponse;
 import com.example.demo.responses.OrderDetailResponse;
 import com.example.demo.responses.ProductResponse;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -34,15 +35,15 @@ public class OrderDetail {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    public OrderDetailResponse toOrderDetailResponse(OrderDetail orderDetail) {
+    public static OrderDetailResponse toOrderDetailResponse(OrderDetail orderDetail) {
         ProductResponse productResponse = ProductResponse.builder()
                 .price(orderDetail.getProduct().getPrice())
                 .name(orderDetail.getProduct().getName())
                 .id(orderDetail.getProduct().getId())
                 .categoryResponse(
                         CategoryResponse.builder()
-                                .name(product.getCategory().getName())
-                                .id(product.getCategory().getId())
+                                .name(orderDetail.getProduct().getCategory().getName())
+                                .id(orderDetail.getProduct().getCategory().getId())
                                 .build()
                 )
                 .build();
@@ -53,6 +54,26 @@ public class OrderDetail {
                 .productResponse(productResponse)
                 .build();
         return orderDetailResponse;
+    }
+
+    public static OrderDetailInOrderResponse toOrderDetailInOrderResponse(OrderDetail orderDetail) {
+        ProductResponse productResponse = ProductResponse.builder()
+                .price(orderDetail.getProduct().getPrice())
+                .name(orderDetail.getProduct().getName())
+                .id(orderDetail.getProduct().getId())
+                .categoryResponse(
+                        CategoryResponse.builder()
+                                .name(orderDetail.getProduct().getCategory().getName())
+                                .id(orderDetail.getProduct().getCategory().getId())
+                                .build()
+                )
+                .build();
+        OrderDetailInOrderResponse orderDetailInOrderResponse = OrderDetailInOrderResponse.builder()
+                .quantity(orderDetail.getQuantity())
+                .id(orderDetail.getId())
+                .productResponse(productResponse)
+                .build();
+        return orderDetailInOrderResponse;
     }
 
 }

@@ -9,13 +9,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderDetailResponse {
+public class OrderDetailInOrderResponse {
     private int id;
     private int quantity;
 
     @JsonProperty("Product")
     private ProductResponse productResponse;
-
-    @JsonProperty("order_id")
-    private int orderId;
 }
