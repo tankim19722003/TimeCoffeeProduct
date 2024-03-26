@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.example.demo.responses.CategoryResponse;
 import com.example.demo.responses.OrderDetailResponse;
 import com.example.demo.responses.ProductResponse;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -38,7 +39,12 @@ public class OrderDetail {
                 .price(orderDetail.getProduct().getPrice())
                 .name(orderDetail.getProduct().getName())
                 .id(orderDetail.getProduct().getId())
-                .categoryId(orderDetail.getProduct().getCategory().getId())
+                .categoryResponse(
+                        CategoryResponse.builder()
+                                .name(product.getCategory().getName())
+                                .id(product.getCategory().getId())
+                                .build()
+                )
                 .build();
         OrderDetailResponse orderDetailResponse = OrderDetailResponse.builder()
                 .orderId(orderDetail.getOrder().getId())

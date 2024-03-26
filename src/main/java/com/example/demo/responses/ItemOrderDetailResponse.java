@@ -1,5 +1,6 @@
 package com.example.demo.responses;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Data
@@ -12,6 +13,7 @@ public class ItemOrderDetailResponse {
     private int id;
     private int quantity;
 
+    @JsonProperty("product")
     private ProductResponse productResponse;
 
 }

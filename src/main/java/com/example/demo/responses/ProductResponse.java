@@ -1,5 +1,6 @@
 package com.example.demo.responses;
 
+import com.example.demo.model.Category;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -18,6 +19,6 @@ public class ProductResponse {
 
     private int price;
 
-    @JsonProperty("category_id")
-    private int categoryId;
+    @JsonProperty("category")
+    private CategoryResponse categoryResponse;
 }

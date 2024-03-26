@@ -7,10 +7,7 @@ import com.example.demo.model.Product;
 import com.example.demo.repositories.OrderDetailRepository;
 import com.example.demo.repositories.OrderRepository;
 import com.example.demo.repositories.ProductRepository;
-import com.example.demo.responses.ItemOrderDetailResponse;
-import com.example.demo.responses.ListOrderDetailResponse;
-import com.example.demo.responses.OrderDetailResponse;
-import com.example.demo.responses.ProductResponse;
+import com.example.demo.responses.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -80,15 +77,20 @@ public class OrderDetailService implements IOrderDetailService{
 
     @Override
     public ListOrderDetailResponse findAllByOrderId(int orderId) throws Exception {
+
+        // check order
+        Order order = orderRepository.findById(orderId).orElseThrow(
+                () -> new Exception("order does not exist")
+        );
+
+        // handle order detail response
         List<OrderDetail> orderDetails = new ArrayList<>();
         orderDetails = orderDetailRepository.findAllByOrderId(orderId);
 
         if (orderDetails.isEmpty()) throw new Exception("OrderDetail with order id is not exist");
 
         ListOrderDetailResponse listOrderDetailResponse = new ListOrderDetailResponse();
-
-        listOrderDetailResponse.setOrderId(orderId);
-
+        // set order detail response to list order detail
         List<ItemOrderDetailResponse> itemOrderDetailResponses = new ArrayList<>();
         itemOrderDetailResponses = orderDetails.stream().map(
                 orderDetail -> {
@@ -96,7 +98,12 @@ public class OrderDetailService implements IOrderDetailService{
                             .name(orderDetail.getProduct().getName())
                             .id(orderDetail.getProduct().getId())
                             .price(orderDetail.getProduct().getPrice())
-                            .categoryId(orderDetail.getProduct().getCategory().getId())
+                            .categoryResponse(
+                                    CategoryResponse.builder()
+                                            .name(orderDetail.getProduct().getCategory().getName())
+                                            .id(orderDetail.getProduct().getCategory().getId())
+                                            .build()
+                            )
                             .build();
                     return ItemOrderDetailResponse.builder()
                             .quantity(orderDetail.getQuantity())
@@ -105,6 +112,16 @@ public class OrderDetailService implements IOrderDetailService{
                             .build();
                 }).collect(Collectors.toList());
         listOrderDetailResponse.setItemOrderDetailList(itemOrderDetailResponses);
+
+        // set orderResponse to attribute orderDetailResponse
+        OrderResponse orderResponse = OrderResponse.builder()
+                .createAt(order.getOrderDate())
+                .totalMoney(order.getTotalMoney())
+                .id(order.getId())
+                .build();
+
+
+        listOrderDetailResponse.setOrderResponse(orderResponse);
         return listOrderDetailResponse;
     }
 

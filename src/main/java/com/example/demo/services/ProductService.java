@@ -5,6 +5,7 @@ import com.example.demo.model.Category;
 import com.example.demo.model.Product;
 import com.example.demo.repositories.CategoryRepository;
 import com.example.demo.repositories.ProductRepository;
+import com.example.demo.responses.CategoryResponse;
 import com.example.demo.responses.ProductResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -69,7 +70,12 @@ public class ProductService implements IProductService{
                     return ProductResponse.builder()
                             .id(product.getId())
                             .price(product.getPrice())
-                            .categoryId(product.getCategory().getId())
+                            .categoryResponse(
+                                    CategoryResponse.builder()
+                                            .name(product.getCategory().getName())
+                                            .id(product.getCategory().getId())
+                                            .build()
+                            )
                             .name(product.getName())
                             .build();
                 }).collect(Collectors.toList());
@@ -90,7 +96,12 @@ public class ProductService implements IProductService{
                     return ProductResponse.builder()
                             .id(product.getId())
                             .price(product.getPrice())
-                            .categoryId(product.getCategory().getId())
+                            .categoryResponse(
+                                    CategoryResponse.builder()
+                                            .name(product.getCategory().getName())
+                                            .id(product.getCategory().getId())
+                                            .build()
+                            )
                             .name(product.getName())
                             .build();
                 }).collect(Collectors.toList());

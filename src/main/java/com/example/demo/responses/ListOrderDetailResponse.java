@@ -13,7 +13,9 @@ import java.util.List;
 @Builder
 public class ListOrderDetailResponse {
 
+    @JsonProperty("order")
     private OrderResponse orderResponse;
 
+    @JsonProperty("order_details")
     List<ItemOrderDetailResponse> itemOrderDetailList;
 }

@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.dtos.OrderDetailDTO;
 import com.example.demo.model.OrderDetail;
+import com.example.demo.responses.ListOrderDetailResponse;
 import com.example.demo.responses.OrderDetailResponse;
 import com.example.demo.responses.ProductResponse;
 import com.example.demo.services.OrderDetailService;
@@ -58,9 +59,8 @@ public class OrderDetailController {
             @PathVariable("order_id") int id
     ) {
         try {
-            List<OrderDetailResponse> orderDetailResponses = new ArrayList<>();
-            orderDetailResponses = orderDetailService.findAllByOrderId(id);
-            return ResponseEntity.ok().body(orderDetailResponses);
+            ListOrderDetailResponse listOrderDetailResponse = orderDetailService.findAllByOrderId(id);
+            return ResponseEntity.ok().body(listOrderDetailResponse);
         } catch(Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
