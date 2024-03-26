@@ -20,4 +20,7 @@ public class OrderResponse {
 
     @JsonProperty("created_at")
     private Date createAt;
+
+    @JsonProperty("table")
+    private TableResponse tableResponse;
 }

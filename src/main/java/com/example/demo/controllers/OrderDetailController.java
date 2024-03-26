@@ -4,14 +4,10 @@ import com.example.demo.dtos.OrderDetailDTO;
 import com.example.demo.model.OrderDetail;
 import com.example.demo.responses.ListOrderDetailResponse;
 import com.example.demo.responses.OrderDetailResponse;
-import com.example.demo.responses.ProductResponse;
 import com.example.demo.services.OrderDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/timecoffee/order_details")
@@ -35,12 +31,12 @@ public class OrderDetailController {
 
     @DeleteMapping("/{id}")
     public void deleteOrderDetail(
-            @RequestBody int id
+            @PathVariable int id
     ) {
         orderDetailService.deleteOrderDetail(id);
     }
 
-    @PutMapping("/{orderDetailId}")
+    @PutMapping("/updateOrder/{orderDetailId}")
     public ResponseEntity<?> updateOrderDetail(
             @RequestBody OrderDetailDTO orderDetailDTO,
             @PathVariable("orderDetailId") int orderDetailId

@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.example.demo.responses.OrderResponse;
+import com.example.demo.responses.TableResponse;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -42,5 +44,17 @@ public class Order {
     @JsonManagedReference
 //    @JsonIgnore
     List<OrderDetail> orderDetails = new ArrayList<>();
+
+    public static OrderResponse toOrderResponse(Order order) {
+        TableResponse tableResponse = Tables.toTableResponse(order.getTable());
+
+        OrderResponse orderResponse = OrderResponse.builder()
+                .id(order.getId())
+                .totalMoney(order.getTotalMoney())
+                .createAt(order.getOrderDate())
+                .tableResponse(tableResponse)
+                .build();
+        return orderResponse;
+    }
 
 }

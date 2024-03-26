@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.example.demo.responses.TableResponse;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -34,4 +35,12 @@ public class Tables {
     @OneToMany(mappedBy = "table", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Order> orders = new ArrayList<>();
+
+    public static TableResponse toTableResponse(Tables table) {
+        TableResponse tableResponse = TableResponse.builder()
+                .id(table.getId())
+                .name(table.getName())
+                .build();
+        return  tableResponse;
+    }
 }

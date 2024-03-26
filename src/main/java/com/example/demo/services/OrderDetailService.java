@@ -4,6 +4,7 @@ import com.example.demo.dtos.OrderDetailDTO;
 import com.example.demo.model.Order;
 import com.example.demo.model.OrderDetail;
 import com.example.demo.model.Product;
+import com.example.demo.model.Tables;
 import com.example.demo.repositories.OrderDetailRepository;
 import com.example.demo.repositories.OrderRepository;
 import com.example.demo.repositories.ProductRepository;
@@ -114,10 +115,12 @@ public class OrderDetailService implements IOrderDetailService{
         listOrderDetailResponse.setItemOrderDetailList(itemOrderDetailResponses);
 
         // set orderResponse to attribute orderDetailResponse
+        TableResponse tableResponse = Tables.toTableResponse(order.getTable());
         OrderResponse orderResponse = OrderResponse.builder()
                 .createAt(order.getOrderDate())
                 .totalMoney(order.getTotalMoney())
                 .id(order.getId())
+                .tableResponse(tableResponse)
                 .build();
 
 

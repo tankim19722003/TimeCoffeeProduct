@@ -14,6 +14,5 @@ import java.util.List;
 public class OrderDTO {
     @JsonProperty("table_id")
     private int tableId;
-
-    List<ProductOrder> products;
+//    List<ProductOrder> products;
 }
