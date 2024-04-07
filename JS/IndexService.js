@@ -74,7 +74,9 @@ function displayArea(areaId) {
     })
 }
 
-
+// function loadOrder() {
+    
+// }
 function start() {
     // displayTable(3);
     displayArea(3);

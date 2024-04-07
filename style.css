@@ -250,6 +250,7 @@ body {
 
 .order-item {
     padding:4px;
+    text-align: center; padding:4px 0px
 }
 
 .order-list {
