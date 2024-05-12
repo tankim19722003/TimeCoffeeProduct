@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.example.demo.responses.AreaResponse;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,5 +25,12 @@ public class Area {
     @OneToMany(mappedBy = "area", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Tables> Tables = new ArrayList<>();
+
+    public static AreaResponse toAreaResponse(Area area) {
+        return AreaResponse.builder()
+                .id(area.getId())
+                .name(area.getName())
+                .build();
+    }
 
 }

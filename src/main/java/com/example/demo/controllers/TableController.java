@@ -2,6 +2,8 @@ package com.example.demo.controllers;
 
 import com.example.demo.dtos.TableDTO;
 import com.example.demo.model.Tables;
+import com.example.demo.responses.TableResponse;
+import com.example.demo.responses.TableResponseByArea;
 import com.example.demo.services.TableService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +41,7 @@ public class TableController {
     public ResponseEntity<?> findAllByAreaId(
             @PathVariable int id
     ) {
-        List<Tables> tables = new ArrayList<>();
+        List<TableResponseByArea> tables = new ArrayList<>();
         try {
             tables = tableService.findAllByAreaId(id);
             return ResponseEntity.ok().body(tables);

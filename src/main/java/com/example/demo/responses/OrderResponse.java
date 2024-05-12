@@ -1,5 +1,6 @@
 package com.example.demo.responses;
 
+import com.example.demo.model.OrderDetail;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -23,4 +24,5 @@ public class OrderResponse {
 
     @JsonProperty("table")
     private TableResponse tableResponse;
+
 }

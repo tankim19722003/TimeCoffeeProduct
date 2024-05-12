@@ -3,7 +3,6 @@ package com.example.demo.model;
 import com.example.demo.responses.OrderResponse;
 import com.example.demo.responses.TableResponse;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;

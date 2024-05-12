@@ -1,12 +1,12 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.MessageReponse.Message;
 import com.example.demo.dtos.OrderDTO;
 import com.example.demo.dtos.OrderUpdatingDTO;
-import com.example.demo.responses.OrderCreatingResponse;
+import com.example.demo.responses.OrderHasDetailResponse;
 import com.example.demo.responses.OrderResponse;
 import com.example.demo.services.OrderService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,20 +22,23 @@ public class OrderController {
             @RequestBody OrderDTO orderDTO
     ){
         try {
-            OrderCreatingResponse orderCreatingResponse = orderService.createOrder(orderDTO);
+            OrderHasDetailResponse orderCreatingResponse = orderService.createOrder(orderDTO);
             return ResponseEntity.ok().body(orderCreatingResponse);
         }catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(
+                    Message.builder()
+                            .message(e.getMessage())
+                            .build()
+            );
         }
     }
 
-    @PutMapping("/changeTableInOrder/{order_id}")
+    @PutMapping("/changeTableInOrder")
     public ResponseEntity<?> updateTableInOrder(
-            @PathVariable("order_id") int orderId,
             @RequestBody OrderUpdatingDTO orderUpdatingDTO
     ) {
         try {
-            OrderResponse orderResponse = orderService.updateOrder(orderUpdatingDTO, orderId);
+            OrderResponse orderResponse = orderService.updateOrder(orderUpdatingDTO);
             return ResponseEntity.ok().body(orderResponse);
         } catch(Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -54,11 +57,32 @@ public class OrderController {
             @PathVariable int id
     ) {
         try {
-            OrderResponse orderResponse = orderService.getOrder(id);
+            OrderHasDetailResponse orderResponse = orderService.getOrder(id);
             return ResponseEntity.ok().body(orderResponse);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(
+                    Message.builder()
+                            .message(e.getMessage())
+                            .build()
+            );
         }
     }
 
+    @GetMapping("/table/{tableId}")
+    public ResponseEntity<?> findOrderByTableId(
+            @PathVariable("tableId") int tableId
+    ) throws Exception {
+        return ResponseEntity.ok().body(orderService.findOrderByTableId(tableId));
+    }
+
+    @PutMapping("/pay_order")
+    public void payOrder(
+            @RequestParam("table_id") int tableId
+    ) {
+        try {
+            orderService.payOrder(tableId);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

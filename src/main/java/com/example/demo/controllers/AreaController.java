@@ -28,8 +28,8 @@ public class AreaController {
         }
     }
 
-    @GetMapping()
-    public ResponseEntity<List<Area>> getAllArea() {
+    @GetMapping("")
+    public ResponseEntity<List<AreaResponse>> getAllArea() {
         return ResponseEntity.ok().body(areaService.getAllArea());
     }
 

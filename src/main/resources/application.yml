@@ -14,3 +14,8 @@ spring:
       hibernate:
       dialect: org.hibernate.dialect.MYSQL8Dialect
       format_sql: true
+api:
+  prefix: api/v1/timecoffee
+jwt:
+  expiration: 2592000
+  secretKey: 0lKNM0OQ/ZQB2ZrOyAwoSCNCM/Z7bvlruCjFcwZHG+Y=

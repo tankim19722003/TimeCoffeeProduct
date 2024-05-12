@@ -5,11 +5,14 @@ import com.example.demo.model.Area;
 import com.example.demo.model.Tables;
 import com.example.demo.repositories.AreaRepository;
 import com.example.demo.repositories.TableRepository;
+import com.example.demo.responses.TableResponse;
+import com.example.demo.responses.TableResponseByArea;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -41,12 +44,18 @@ public class TableService implements ITableService{
     }
 
     @Override
-    public List<Tables> findAllByAreaId(int AreaId) throws Exception {
+    public List<TableResponseByArea> findAllByAreaId(int AreaId) throws Exception {
         List<Tables> tables = new ArrayList<>();
         tables = tableRepository.findAllByAreaId(AreaId);
 
         if (tables == null) throw new Exception("Data does not found");
 
-        return tables;
+
+        List<TableResponseByArea> tablesResponseByAreas= new ArrayList<>();
+        tablesResponseByAreas = tables.stream().map(table -> {
+            return Tables.toTableResponseByArea(table);
+        }).collect(Collectors.toList());
+
+        return tablesResponseByAreas;
     }
 }

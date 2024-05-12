@@ -12,4 +12,7 @@ import lombok.*;
 public class OrderUpdatingDTO {
     @JsonProperty("table_id")
     private int tableId;
+
+    @JsonProperty("order_id")
+    private int orderId;
 }

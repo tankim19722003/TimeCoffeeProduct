@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import com.example.demo.responses.TableResponse;
+import com.example.demo.responses.TableResponseByArea;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -40,6 +41,15 @@ public class Tables {
         TableResponse tableResponse = TableResponse.builder()
                 .id(table.getId())
                 .name(table.getName())
+                .build();
+        return  tableResponse;
+    }
+
+    public static TableResponseByArea toTableResponseByArea(Tables table) {
+        TableResponseByArea tableResponse = TableResponseByArea.builder()
+                .id(table.getId())
+                .name(table.getName())
+                .status(table.isStatus())
                 .build();
         return  tableResponse;
     }

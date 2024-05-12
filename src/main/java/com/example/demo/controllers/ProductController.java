@@ -28,14 +28,14 @@ public class ProductController {
         }
     }
 
-    @GetMapping()
-    public ResponseEntity<?> getAllProducts() {
-       try {
-           return ResponseEntity.ok().body(productService.getAllProducts());
-       } catch (Exception e) {
-           return ResponseEntity.badRequest().body(e.getMessage());
-       }
-    }
+//    @GetMapping("")
+//    public ResponseEntity<?> getAllProducts() {
+//       try {
+//           return ResponseEntity.ok().body(productService.getAllProducts());
+//       } catch (Exception e) {
+//           return ResponseEntity.badRequest().body(e.getMessage());
+//       }
+//    }
 
     @PutMapping()
     public ResponseEntity<?>updateProduct(

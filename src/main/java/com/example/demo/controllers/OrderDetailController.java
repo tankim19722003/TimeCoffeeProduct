@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 
+import com.example.demo.MessageReponse.Message;
 import com.example.demo.dtos.OrderDetailDTO;
+import com.example.demo.dtos.UpdatingAndAddingItemDTO;
 import com.example.demo.model.OrderDetail;
 import com.example.demo.responses.ListOrderDetailResponse;
 import com.example.demo.responses.OrderDetailResponse;
@@ -32,23 +34,10 @@ public class OrderDetailController {
     @DeleteMapping("/{id}")
     public void deleteOrderDetail(
             @PathVariable int id
-    ) {
+    ) throws Exception {
         orderDetailService.deleteOrderDetail(id);
     }
 
-    @PutMapping("/updateOrder/{orderDetailId}")
-    public ResponseEntity<?> updateOrderDetail(
-            @RequestBody OrderDetailDTO orderDetailDTO,
-            @PathVariable("orderDetailId") int orderDetailId
-    ) {
-        try {
-            OrderDetail orderDetailUpdated = orderDetailService.updateOrderDetail(orderDetailDTO, orderDetailId);
-            OrderDetailResponse orderDetailResponse = orderDetailUpdated.toOrderDetailResponse(orderDetailUpdated);
-            return ResponseEntity.ok().body(orderDetailResponse);
-        }catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
 
     @GetMapping("/{order_id}")
     public ResponseEntity<?> findAllByOrderId(
@@ -58,7 +47,30 @@ public class OrderDetailController {
             ListOrderDetailResponse listOrderDetailResponse = orderDetailService.findAllByOrderId(id);
             return ResponseEntity.ok().body(listOrderDetailResponse);
         } catch(Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(
+                    Message.builder()
+                            .message(e.getMessage())
+                            .build()
+            );
+        }
+    }
+
+    @GetMapping("/table/{table_id}")
+    public ResponseEntity<?> getOrderDetailByTableId(
+            @PathVariable("table_id") int tableId
+    ) {
+        ListOrderDetailResponse listOrderDetailResponse = orderDetailService.getOrderDetailOfTable(tableId);
+        return ResponseEntity.ok().body(listOrderDetailResponse);
+    }
+
+    @PutMapping("")
+    public void UpdatingAndAddingOrderDetail(
+            @RequestBody UpdatingAndAddingItemDTO updatingAndAddingItemDTO
+            ) {
+        try {
+            orderDetailService.updatingAndAddingOrder(updatingAndAddingItemDTO);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

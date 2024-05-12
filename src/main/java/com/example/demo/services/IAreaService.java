@@ -9,5 +9,5 @@ import java.util.List;
 public interface IAreaService {
     AreaResponse createArea(AreaDTO areaDTO) throws Exception;
     void deleteArea(int id);
-    List<Area> getAllArea();
+    List<AreaResponse> getAllArea();
 }

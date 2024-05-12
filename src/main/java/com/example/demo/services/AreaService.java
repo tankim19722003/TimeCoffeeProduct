@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,8 +17,13 @@ public class AreaService implements IAreaService {
     private final AreaRepository areaRepository;
 
     @Override
-    public List<Area> getAllArea() {
-        return areaRepository.findAll();
+    public List<AreaResponse> getAllArea() {
+        List<Area> areas = areaRepository.findAll();
+
+        List<AreaResponse> areaResponses = areas.stream().map(area -> {
+                return Area.toAreaResponse(area);
+        }).collect(Collectors.toList());
+        return areaResponses;
     }
 
     @Override
