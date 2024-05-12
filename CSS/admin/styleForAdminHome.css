@@ -1,0 +1,150 @@
+.nav {
+    text-decoration: none;
+    color:black;
+}
+
+/*add table*/
+
+#table-plus-icon {
+    width:50px;
+}
+
+.add {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.overlay {
+    position:absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+}
+
+.add-product,
+.add-category,
+.add-table,
+.add-area{
+    position: relative;
+    z-index: 10;
+    background-color:white;
+    padding:20px 30px;
+    border-radius: 4px;
+}
+
+.add-body {
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-product_close-btn,
+.add-category_close-btn, 
+.add-table_close-btn,
+.add-area_close-btn {
+    width:15px;
+    position: absolute;
+    top:15px;
+    right:15px;
+}
+
+.add-product_close-btn:hover,
+.add-category_close-btn:hover,
+.add-table_close-btn:hover,
+.add-area_close-btn:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.add-product_body,
+.add-category_body {
+    display: flex;
+    flex-direction: column;
+}
+.add-area_body {
+    margin-top: 20px;
+}
+
+.add-product_body-input,
+.add-category_body-input,
+.add-table_body-input,
+.add-area_body-input {
+    width:200px;
+    max-width:100%;
+    padding:2px 4px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    margin-top: 5px;
+}
+
+#add-product_body-add-btn,
+#add-category_body-add-btn,
+#add-table_body-add-btn,
+#add-area_body-add-btn {
+    margin-top: 10px;
+    float: right;
+    padding:2px 8px;
+    border:1px solid #ccc;
+    border-radius: 3px;
+    background-color: blue;
+    color:white;
+}
+
+/* remove table*/
+#remove-product-icon,
+#remove-table-icon {
+    display: flex;
+    font-size: 16px;
+    background-color: red;
+    width:20px;
+    height:20px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    top:-5px;
+    right:-5px;
+    color:#fff;
+} 
+#remove-product-icon:hover,
+#remove-table-icon:hover{
+    transform: scale(1.2);
+}
+
+/*style for management food*/
+
+.product {
+    border:none;
+}
+#product {
+    height:500px;
+    max-height:100%;
+    border:1px solid #ccc;
+}
+
+/*statitic*/
+.navigation-statistic  {
+    position: relative;
+}
+.develop-status {
+    background-color:red;
+    color:white;
+    font-size: 10px;
+    padding:2px 4px;
+    border-top-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    position: absolute;
+    top: -5px;
+    right:-60%;
+}

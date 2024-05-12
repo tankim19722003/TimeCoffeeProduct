@@ -41,6 +41,19 @@
 .col-1 {
     width: 10%;
 } */
+#logout {
+    text-align: center;
+}
+
+.account-infor {
+    display: flex;
+    flex-direction: column;
+}
+#logout:hover {
+    cursor: pointer;
+    color:rgb(211, 31, 64);
+    font-weight: bold;
+}
 .text-decoration-none{
     text-decoration: none;
 }
@@ -58,7 +71,7 @@
 }
 
 body {
-    background-color: #C3E0F0;
+    /* background-color: #C3E0F0; */
     /* overflow: hidden; */
 }
 .header{
@@ -66,7 +79,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: #C3E0F0;
+    /* background-color: #C3E0F0; */
 }
 
 .branch {
@@ -103,9 +116,10 @@ body {
 .navigation {
     display: flex;
     flex-direction: row;
-    background-color: #C3E0F0;
+    /* background-color: #C3E0F0; */
 }
 
+.nav-statistic,
 .nav {
     display: flex;
     flex-direction: row;
@@ -116,6 +130,7 @@ body {
     font-weight: bold;
     color:black;
     border-radius: 4px;
+    text-decoration: none;
 }
 
 .sidebar-item:hover,
@@ -158,7 +173,7 @@ body {
     padding:8px;
     text-align: center;
     width:24%;
-    margin:2px;
+    margin:4px;
     font-size: 40px;
     border-radius: 4px;
     cursor: pointer;
@@ -169,8 +184,8 @@ body {
 }
 
 .table-item:hover {
-    background-color:#FB6A8A;
-
+    cursor: pointer;
+    transform: translateY(1.2px);
 }
 .container {
     display: flex;
@@ -282,4 +297,190 @@ body {
 }
 .btn-paid {
     background-color: #F65D48!important;
+}
+
+
+/*Changing table css*/
+.changing-table {
+    position: relative;
+}
+.table-focus-empty {
+    border:2px solid black;
+}
+.table-focus-occupied {
+    border:2px solid red;
+}
+.changing-table_title {
+    text-align: center;
+}
+
+.changing-table_select-area {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.changing-table_select-area_tilte {
+    margin-bottom: 0px;
+    margin-right: 20px;
+}
+
+.changing-table_select-area_select {
+    width: 200px;
+}
+
+.table-container {
+    display: flex;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    /* min-height: 100px; */
+}
+
+.changing-table-btn {
+    float: right; 
+    padding:4px 10px; 
+    border-radius: 4px; 
+    background-color: rgb(0, 128, 255);
+    color:white; 
+    border:1px solid #ccc;
+}
+.changing-table-btn:hover {
+    transform: translateY(-2px);
+}
+
+.changing-table-closing_icon {
+    width:15px;
+    position: absolute;
+    top:5px;
+    right: 2px;
+}
+
+.changing-table-closing_icon:hover {
+    transform: scale(1.2);
+}
+
+@media print {
+    .print-section {
+        display: block!important;
+    }
+    .non-printable {
+        display: none;
+    }
+}
+
+/* print content*/
+.coffee-shop_header {
+    margin:6px 0px;
+}
+.print-content {
+    /* visibility: collapse; */
+    display: none;
+    width: 350px; /* Điều chỉnh kích thước tờ giấy tương ứng với máy in Xprinter */
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+  }
+
+.coffee-shop_address,
+.coffee-shop_time {
+    margin:0;
+}
+
+.money-bill {
+    text-align: right;
+}
+
+.footer-label {
+    font-weight: 500;
+}
+.bill-footer {
+    margin-bottom: 6px;
+    border-bottom:1px solid #ccc;
+    border-top:1px solid #ccc;
+    padding:8px;
+}
+
+/* payment */
+
+.payment {
+    display: none;
+    position: fixed;
+    top: 0;
+    right:0;
+    left: 0;
+    bottom: 0;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+}
+
+.payment-overlay {
+    background-color: rgba(0,0,0,0.2);
+    position: absolute;
+    top: 0;
+    right:0;
+    left: 0;
+    bottom: 0;
+  
+}
+
+.payment-content {
+    position: relative;
+    background-color: #fff;
+    min-width: 200px;
+    min-height: 200px;
+    border-radius: 4px;
+    padding:10px 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.money-receive_input {
+    border:1px solid #ccc;
+    width:250px;
+    max-width: 100%;
+    padding:4px 6px;
+}
+
+.payment-content_body-pay-btn {
+    float:right;
+    margin-top: 20px;
+    border-radius: 4px;
+    padding:3px 6px;
+    border:1px solid #ccc;
+    background-color: #349ded;
+    color:white;
+}
+
+.payment-close {
+    position: absolute;
+    top:4px;
+    right:15px;
+}
+
+.payment-close :hover {
+    transform: scale(1.2);
+}
+
+.payment-content_confirm-close,
+.pay-bill-icon{
+    width:15px;
+}
+
+.payment-content_confirm {
+    display: none;
+}
+.d-confirm {
+    display: flex;
+    flex-direction: column;
 }

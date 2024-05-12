@@ -87,7 +87,17 @@ alter table tables drop column is_paid
 alter table orders add is_paid boolean;
 
 -- add color to category
+alter table users add column id int PRIMARY KEY AUTO_INCREMENT;
+alter table users change column account_name account varchar(100);
 
+create table role (
+    id int PRIMARY key AUTO_INCREMENT,
+    name varchar(100)
+)
 
+RENAME TABLE role TO roles;
 
+alter table users add column role_id int;
+
+alter table users add foreign key(role_id) references roles(id);
 

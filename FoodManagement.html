@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./CSS/common/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./CSS/admin/styleForAdminHome.css">
+    <title>Order</title>
+</head>
+<body>
+  <header class="header non-printable">
+    <div class="branch">
+        <img src="./images/—Pngtree—creative flat coffee cup silhouette_5569828.png" alt="" class="branch_image">
+        <label for="" class="branch_name">Time Coffee</label>
+    </div> 
+
+    <div class="account">
+        <img src="./images/user1.png" alt="" class="account-image">
+        <div class="account-infor">
+          <span class="account-name" style="font-weight: bold;">thanhtai900</span>
+          <span id="logout" style="font-size: 1rem;" onclick="signOut()">Sign out</span>
+        </div>
+    </div>
+  </header>
+
+  <div class="border-line"></div>
+
+  <nav class="navigation">
+    <a href="./index.html" class="navigation-home nav text-decoration-none color-black">
+        <i class="fa-solid fa-house nav-icon"></i>
+        <label for="" class="navigation-home_label nav-label">TRANG CHỦ</label>
+    </a>
+
+    <a href="./TableManagement.html" class="navigation-manage-table nav">
+        <i class="fa-solid fa-table nav-icon "></i>
+        <label for="" class="navigation-manage-table_label nav-label">QUẢN LÍ BÀN</label>
+    </a>
+
+    <a href="FoodManagement.html" class="navigation-manage-menu nav active">
+        <i class="fa-solid fa-rectangle-list nav-icon"></i>
+        <label for="" class="navigation-manage-menu_label nav-label">QUẢN LÍ MÓN</label>
+    </a>
+
+    <a class="navigation-statistic nav-statistic" style="background-color: white!important;">
+        <span class="develop-status">Đang phát triển</span>
+        <i class="fa-solid fa-chart-simple nav-icon"></i>
+        <label for="" class="navigation-statistic_label nav-label">THỐNG KÊ</label>
+    </a>
+  </nav>
+  <section class="body">
+    <div class="container">
+          <div class="col-12">
+              <div class="row">
+                  <div class="col-9" id="product">
+                      <div class="row product"></div>
+                  </div>
+                  <div class="col-3" id="category">
+                    <div class="category-list">
+                    </div>
+                </div>
+                  <div class="changing-table col-12 d-none">
+                      <div class="changing-table-closing">
+                          <img src="./images/close.png" alt="" class="changing-table-closing_icon" onclick="closeChangingTable()">
+                      </div>
+                      <h4 class="changing-table_title">Đổi bàn</h4>
+                      <div class="changing-table_select-area">
+                          <h6 class="changing-table_select-area_tilte">Chọn khu vực</h6>
+                          <select class="changing-table_select-area_select" onchange="showTableByArea()">
+                          </select>
+                      </div>
+                      <div class="changing-table_body">
+                          <div class="table-container"></div>
+                      </div>
+                      <button class="changing-table-btn" onclick="handleSaveChangingTable()">Chuyển</button>
+                  </div> 
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="add d-none">
+    <div class="overlay" onclick="closeAdd()"></div>
+    <div class="add-body">
+        <div class="add-product d-none">
+            <img src="./images/close.png" alt="" class="add-product_close-btn" onclick="closeAdd()">
+            <h4 class="add-product_title" style="text-align: center;">Thêm Món</h4>
+            <div class="add-product_body">
+                <input type="text" class="add-product_body-input add-product_body-input-name" placeholder="Tên món ăn">
+                <input type="text" class="add-product_body-input add-product_body-input-price" placeholder="Giá">
+                <input type="hidden" id="category-id">
+            </div>
+            <button onclick = "saveProduct()" id="add-product_body-add-btn">Thêm</button>
+        </div>
+        <div class="add-category d-none">
+            <img src="./images/close.png" alt="" class="add-category_close-btn" onclick="closeAdd()">
+            <h4 class="add-category_title">Thêm category</h4>
+            <div class="add-category_body">
+                <input type="text" class="add-category_body-input" placeholder="Category's name">
+            </div>
+            <button onclick = "saveCategory()" id="add-category_body-add-btn">Thêm</button>
+        </div>
+    </div>
+  </section>
+  <script src="./JS/ProductManagement.js"></script>
+  <script src="./JS/scriptForLogout.js"></script>
+
+</body>
+</html>
